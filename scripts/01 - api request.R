@@ -29,7 +29,7 @@ endpoint <- "https://content.guardianapis.com/search"
 parameters <- list(q = "amazon",
                    from_date = "2000-01-01",
                    to_date = "2022-12-31",
-                   page_size = 5000)
+                   page_size = 200)
 
 # Send GET request to API and retrieve response
 response <- GET(endpoint, query = c(parameters, list(apiKey = api_key)))
