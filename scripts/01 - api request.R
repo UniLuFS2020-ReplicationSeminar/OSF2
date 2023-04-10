@@ -26,10 +26,12 @@ api_key <- rstudioapi::askForPassword()
 endpoint <- "https://content.guardianapis.com/search"
 
 # Set query parameters
+# According to Guardian documentation the limit for page size is 50: 
+# https://open-platform.theguardian.com/documentation/search
 parameters <- list(q = "amazon",
                    from_date = "2000-01-01",
                    to_date = "2022-12-31",
-                   page_size = 5000)
+                   page_size = 50)
 
 # Send GET request to API and retrieve response
 response <- GET(endpoint, query = c(parameters, list(apiKey = api_key)))
