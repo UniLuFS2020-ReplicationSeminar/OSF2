@@ -5,8 +5,8 @@ Data Mining Class Exercise 2 for Olga, Simon and Fabian
 TBD
 
 ## To Do List
-- [ ] Set up API: Simon
-- [ ] Create corpus of Guardian articles on the company Amazon: Fabian  
+- [x] Set up API: Simon
+- [x] Create corpus of Guardian articles on the company Amazon: Fabian  
 - [ ] Sentiment analysis of corpus and 2-3 sentences on the analysis: Simon
 - [ ] Word cloud and / or word frequencies of corpus and 2-3 sentences on the analysis: Olga
 - [ ] Topic modelling of corpus and 2-3 sentences on the analysis: Fabian  
