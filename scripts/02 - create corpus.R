@@ -29,6 +29,7 @@ org_entity <- c("ORG_I", "ORG_B", "ORG_O") # spacyr entity ORG: Companies, agenc
 dataframes_list <- list() # Create empty list to add dataframes to
 
 # Use spacy to tag text (takes about 2h)
+# https://spacyr.quanteda.io/articles/using_spacyr.html#tokenizing-and-tagging-texts
 for (row in 1:nrow(guardian_amazon_corpus)) {
   parsedtxt_temp <- spacy_parse(guardian_amazon_corpus$body_text[row]) # Tag text
   parsedtxt_temp <- parsedtxt_temp %>% filter(token == "Amazon") # Only keep row with "Amazon" as a token, keeping things efficient
