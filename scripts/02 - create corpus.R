@@ -20,6 +20,7 @@ library("spacyr")
 spacy_initialize(python_executable = "/Users/aiolf1/opt/miniconda3/bin/python",
                  model = "en_core_web_sm")
 
+# Test with a sample of articles
 guardian_amazon_sample <- sample_n(guardian_amazon, 200)
 org_entity <- c("ORG_I", "ORG_B", "ORG_O") # spacyr entity ORG: Companies, agencies, institutions, etc.
 dataframes_list <- list() # Create empty list to add dataframes to
