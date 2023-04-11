@@ -29,4 +29,5 @@ vignettes/*.pdf
 .Renviron
 # Project Specific
 *.csv
+*.RData
 *API_Key.txt
