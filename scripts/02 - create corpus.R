@@ -28,7 +28,7 @@ guardian_amazon_corpus <- guardian_amazon_corpus %>%
 org_entity <- c("ORG_I", "ORG_B", "ORG_O") # spacyr entity ORG: Companies, agencies, institutions, etc.
 dataframes_list <- list() # Create empty list to add dataframes to
 
-# Use spacy to tag text
+# Use spacy to tag text (takes about 2h)
 for (row in 1:nrow(guardian_amazon_corpus)) {
   parsedtxt_temp <- spacy_parse(guardian_amazon_corpus$body_text[row]) # Tag text
   parsedtxt_temp <- parsedtxt_temp %>% filter(token == "Amazon") # Only keep row with "Amazon" as a token, keeping things efficient
