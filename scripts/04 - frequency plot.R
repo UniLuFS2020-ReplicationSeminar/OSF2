@@ -64,13 +64,13 @@ df <- df %>%
   filter(nchar(as.character(word)) >2,
          word !="don'")
 
-df_top100 <- head(df, 100)
-df_top50 <- head(df, 50)
-df_top30 <- head(df, 30)
-df_top40 <- head(df, 40)
+# create a data set with top 35 words
+
 df_top35 <- head(df, 35)
 
 library("viridis")
+
+# create a radar plot with "most loud" 35 words
 
 ggplot(data=df_top35, aes(x=word, y=freq, fill=word))+
    geom_bar(width = 0.75, stat = "identity", colour = "black", size = 1)+
@@ -79,17 +79,29 @@ ggplot(data=df_top35, aes(x=word, y=freq, fill=word))+
   coord_polar(theta = "x")+
   coord_polar(start = 0)+
     ylim(-2000, 2200)+
-  ggtitle("Top 30 Words by Frequency")+
+  ggtitle("Top 35 Words by Frequency")+
   xlab("")+
   ylab("")+
   theme_minimal()+
   theme(legend.position = "none")+
-  theme(axis.text = element_blank(),
-        panel.grid = element_blank(),
-        plot.margin = unit(rep(-2,4), "cm"))+
   labs(x = NULL, y = NULL)
 
+# create a radar plot with "most salient" 35 words
 
+df_tail35 <- tail(df, 35)
 
+ggplot(data=df_tail35, aes(x=word, y=freq, fill=word))+
+  geom_bar(width = 0.75, stat = "identity", colour = "black", size = 1)+
+  scale_fill_viridis(discrete = TRUE,
+                     option = "B")+
+  coord_polar(theta = "x")+
+  coord_polar(start = 0)+
+  ylim(-2000, 2200)+
+  ggtitle("Bottom 35 Words by Frequency")+
+  xlab("")+
+  ylab("")+
+  theme_minimal()+
+  theme(legend.position = "none")+
+  labs(x = NULL, y = NULL)
 
 
