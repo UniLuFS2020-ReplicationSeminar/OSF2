@@ -7,6 +7,7 @@ TBD
 ## To Do List
 - [x] Set up API: Simon
 - [x] Create corpus of Guardian articles on the company Amazon: Fabian  
+  - [ ] NER Classifier not 100% accurate: Includes mentions of the rainforest (see Word Cloud)
 - [ ] Sentiment analysis of corpus and 2-3 sentences on the analysis: Simon
 - [ ] Word cloud and / or word frequencies of corpus and 2-3 sentences on the analysis: Olga
 - [ ] Topic modelling of corpus and 2-3 sentences on the analysis: Fabian  
