@@ -27,11 +27,10 @@ removeHTML <- function(text){
 # to to remove any HTML tags
 # to remove any numbers from the text
 # to remove any punctuation marks from the text
-# to remove any leading or trailing whitespace from the text
+# to remove any leading or trailing whitespaces from the text
 # to convert all text to lowercase
 # to remove common English stopwords
 # to remove additional stopwords
-# to reduce words to their root form
 
 guardian_amazon_title <- guardian_amazon_title %>% 
   tm_map(content_transformer(removeHTML)) %>% 
@@ -40,8 +39,7 @@ guardian_amazon_title <- guardian_amazon_title %>%
   tm_map(stripWhitespace) %>%
   tm_map(content_transformer(tolower)) %>%
   tm_map(removeWords, stopwords("english")) %>%
-  tm_map(removeWords, stopwords("SMART")) %>%
-  tm_map(stemDocument)
+  tm_map(removeWords, stopwords("SMART"))
 
 # create a TDM object with word frequencies
 
@@ -63,6 +61,7 @@ df <- df %>%
   filter(nchar(as.character(word)) >2,
          word !="don'")
 
+
 # select colors from guardian and amazon logos
 
 guardian.amazon.colors <- c("#072964", "#221f1f", "#fffffe")
@@ -76,9 +75,10 @@ wordcloud2(df,
            color = rep_len(guardian.amazon.colors, nrow(df)),
            backgroundColor = guardian.amazon.background,
            fontFamily = "DM Sans",
-           size = 2.5,
+           size = 0.95,
            minSize = 5,
            rotateRatio = 0)
+
 
 
   
