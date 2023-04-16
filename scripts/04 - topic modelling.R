@@ -27,12 +27,12 @@ dfm_corpus <- dfm(corpus_tokens) %>%
 load("dfm_corpus.RData")
 
 lda_corpus_k10 <- textmodel_lda(dfm_corpus, k = 10)
-lda_corpus_k4 <- textmodel_lda(dfm_corpus, k = 4)
 
 # Save and load corpus_tokens to file to save time
 #save(lda_corpus_k10, file = "lda_corpus_k10.RData")
 load("lda_corpus_k10.RData")
 
+lda_corpus_k10 <- lda_corpus
 terms(lda_corpus_k10, 10)
 terms_list <- terms(lda_corpus_k10, 10)
 
