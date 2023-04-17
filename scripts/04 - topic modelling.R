@@ -43,6 +43,7 @@ topic_frequency <- table(dfm_corpus$topic)
 topic_frequency <- as.data.frame(topic_frequency)
 
 topic_frequency <- topic_frequency %>% 
+  mutate(share = Freq / nrow(guardian_amazon_corpus) * 100) %>% 
   mutate(Var1 = case_when(Var1 == "topic1" ~ "Publishing",
                           Var1 == "topic2" ~ "Football",
                           Var1 == "topic3" ~ "Environment",
@@ -54,10 +55,10 @@ topic_frequency <- topic_frequency %>%
                           Var1 == "topic9" ~ "Digital",
                           Var1 == "topic10" ~ "Amazon Inc."))
 
-ggplot(topic_frequency, aes(x = reorder(Var1, Freq), y = Freq)) +
+ggplot(topic_frequency, aes(x = reorder(Var1, share), y = share)) +
   geom_bar(stat="identity") + 
   xlab(" ") +
-  ylab("Number of Articles") +
+  ylab("Share of Articles in %") +
   theme_minimal() +
   coord_flip()
 
