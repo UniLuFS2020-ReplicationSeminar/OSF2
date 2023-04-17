@@ -9,12 +9,15 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 
 library(here)
+library(knitr)
 load("../terms_list.RData")
 ```
 
 ## Research Question
+[enter text here]
 
 ## Hypothesis
+[enter text here]
 
 ## Main Tests
 
@@ -28,6 +31,11 @@ That a predominantly larger proportion of Amazon words can be associated with th
 
 ### Topic Modelling
 [enter text here]
+
+```{r echo=FALSE}
+kable(terms_list)
+```
+
 
 ![](topic_frequency_bar_plot.png){width=50%}
 
