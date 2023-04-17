@@ -26,21 +26,20 @@ dfm_corpus <- dfm(corpus_tokens) %>%
 #save(dfm_corpus, file = "dfm_corpus.RData")
 load("dfm_corpus.RData")
 
-lda_corpus_k10 <- textmodel_lda(dfm_corpus, k = 10)
+lda_corpus <- textmodel_lda(dfm_corpus, k = 10)
 
 # Save and load corpus_tokens to file to save time
-#save(lda_corpus_k10, file = "lda_corpus_k10.RData")
-load("lda_corpus_k10.RData")
+#save(lda_corpus, file = "lda_corpus.RData")
+load("lda_corpus.RData")
 
-lda_corpus_k10 <- lda_corpus
-terms(lda_corpus_k10, 10)
-terms_list <- terms(lda_corpus_k10, 10)
+terms_list <- terms(lda_corpus, 10)
+save(terms_list, file = "terms_list.RData") # Save for report
 
 # assign topic as a new document-level variable$
-dfm_corpus$topic_k10 <- topics(lda_corpus_k10)
+dfm_corpus$topic <- topics(lda_corpus)
 
 # cross-table of the topic frequency
-topic_frequency <- table(dfm_corpus$topic_k10)
+topic_frequency <- table(dfm_corpus$topic)
 topic_frequency <- as.data.frame(topic_frequency)
 
 topic_frequency <- topic_frequency %>% 
@@ -61,3 +60,14 @@ ggplot(topic_frequency, aes(x = reorder(Var1, Freq), y = Freq)) +
   ylab("Number of Articles") +
   theme_minimal() +
   coord_flip()
+
+ggsave(
+  "topic_frequency_bar_plot.png",
+  plot = last_plot(),
+  path = "output/",
+  scale = 3,
+  width = 400,
+  height = 500,
+  units = "px",
+  dpi = 300,
+)
