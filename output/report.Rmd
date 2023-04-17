@@ -7,10 +7,28 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(here)
+load("../terms_list.RData")
 ```
 
+## Research Question
 
-## Word Cloud
+## Hypothesis
+
+## Main Tests
+
+### Named Entity Recognition
+[enter text here]
+
+### Word Cloud
 In the dataset of Guardian articles examined, the most frequently used word in article titles on the topic of Amazon is, unsurprisingly, the word "amazon" (see word cloud plot). It occurs in its base form ("amazon") 2198 times in the entire 23343 article titles. In addition, the declined and apostrophized forms of the word occur 244 times ("amazons") and 82 times ("amazon'"). A smaller proportion of these words can be associated not only with the largest online retailer, "Amazon," but also with environmental issues related to the words "brazil," "rainforest," "brazilian," "brazils," and "deforestation," which occur 321 and 117, 108, 106, and 97 times, respectively, in the Guardian article titles.
 
 That a predominantly larger proportion of Amazon words can be associated with the online retailer giant is shown by the next most frequently used words: 'review' (903 times), 'happened' (874), 'media' (592), 'world' (472), 'tax' (446), 'online' (420), 'book & books' (416 & 376) (see frequency plot). From this, considerations can be formed in two directions: that Guardian is possibly running a massive advertising campaign for Amazon, or that Amazon is an established source of media consumption that attracts attention from large media houses like Guardian Media Group. However, to determine if the Guardian is running an ad campaign for Amazon or simply reporting on a popular topic, more information and further research is needed.
+
+### Topic Modelling
+[enter text here]
+
+![](topic_frequency_bar_plot.png){width=50%}
+
+
