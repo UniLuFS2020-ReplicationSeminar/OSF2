@@ -46,12 +46,9 @@ search_query_url <- str_c("https://content.guardianapis.com/search?q=amazon&from
 # Send GET request to API and retrieve response
 response <- httr::GET(search_query_url)
 
-#
-df <- jsonlite::fromJSON(paste0(search_query_url, "&page-size=50"),
-                         flatten = TRUE
-)
+# Extract data from response and parse JSON
+json <- jsonlite::fromJSON(httr::content(response, as = "text"))
 
-# Extract data from response
-data <- content(response, "parsed")
-articles <- data$response$results
+# Create dataframe
+
 
