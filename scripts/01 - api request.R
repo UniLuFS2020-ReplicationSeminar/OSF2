@@ -34,7 +34,7 @@ parameters <- list("amazon",
                    "to-date" = "2022-12-31")
 
 # Define search query URL
-search_query_url <- str_c("https://content.guardianapis.com/search?q=amazon&from-date=2000-01-01&to-date=2022-12-31&api-key=", api_key)
+search_query_url <- str_c("https://content.guardianapis.com/search?q=amazon&show-fields=all&from-date=2000-01-01&to-date=2022-12-31&page-size=50&api-key=", api_key)
 #search_query_url <- paste0(
   #base_url,
   #"?q=", parameters[[1]],
