@@ -1,7 +1,10 @@
 library(tidyverse)
+library(here)
+library(rstudioapi)
+library(jsonlite)
 library(httr)
 library(guardianapi)
-library(here)
+
 
 # Using guardianapi package -----------------------------------------------------
 
