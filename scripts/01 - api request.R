@@ -35,15 +35,15 @@ parameters <- list("amazon",
 
 # Define search query URL
 search_query_url <- paste0(
-  base_url, search_query, "api-key=", getOption("gu.API.key"),
-  fields_query, dots_query, show_tags_query, tag_query, from_date_q,
-  to_date_q
+  base_url, "?q=", utils::URLencode(parameters[[1]]), "api-key=", api_key,
+  "&show-fields=", "all",
+  "&show-tags=", "all",
+  "&from-date=", parameters[[2]],
+  "&to-date=", parameters[[3]]
 )
 
-query_url <- str_c(endpoint, URLencode(parameters), "&api-key", api_key)
-
 # Send GET request to API and retrieve response
-response <- httr::GET(query_url)
+response <- httr::GET(search_query_url)
 
 # Extract data from response
 data <- content(response, "parsed")
