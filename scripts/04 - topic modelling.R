@@ -33,6 +33,19 @@ lda_corpus <- textmodel_lda(dfm_corpus, k = 10)
 load("lda_corpus.RData")
 
 terms_list <- terms(lda_corpus, 10)
+terms_list <- as.data.frame(terms_list)
+terms_list <- terms_list %>% 
+  rename(Publishing = topic1) %>% 
+  rename(Football = topic2) %>% 
+  rename(Environment = topic3) %>% 
+  rename(Travel = topic4) %>% 
+  rename("COVID-19" = topic5) %>% 
+  rename(Economy = topic6) %>% 
+  rename("TV & Films" = topic7) %>% 
+  rename(Politics = topic8) %>% 
+  rename(Digital = topic9) %>% 
+  rename("Amazon Inc." = topic10)
+
 save(terms_list, file = "terms_list.RData") # Save for report
 
 # assign topic as a new document-level variable$
