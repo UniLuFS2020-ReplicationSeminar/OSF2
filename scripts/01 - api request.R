@@ -35,13 +35,6 @@ parameters <- list("amazon",
 
 # Define search query URL
 search_query_url <- str_c("https://content.guardianapis.com/search?q=amazon&show-fields=all&from-date=2000-01-01&to-date=2022-12-31&page-size=50&api-key=", api_key)
-#search_query_url <- paste0(
-  #base_url,
-  #"?q=", parameters[[1]],
-  #"&from-date=", "2020-04-01",
-  #"&to-date=", "2020-04-10",
-  #"?api-key=", api_key
-#)
 
 # Send GET request to API and retrieve response
 response <- httr::GET(search_query_url)
