@@ -29,6 +29,9 @@ In the dataset of Guardian articles examined, the most frequently used word in a
 
 That a predominantly larger proportion of Amazon words can be associated with the online retailer giant is shown by the next most frequently used words: 'review' (903 times), 'happened' (874), 'media' (592), 'world' (472), 'tax' (446), 'online' (420), 'book & books' (416 & 376) (see frequency plot). From this, considerations can be formed in two directions: that Guardian is possibly running a massive advertising campaign for Amazon, or that Amazon is an established source of media consumption that attracts attention from large media houses like Guardian Media Group. However, to determine if the Guardian is running an ad campaign for Amazon or simply reporting on a popular topic, more information and further research is needed.
 
+![](Rplot_Amazon_Word_Cloud.png){width=75%}
+![](Rplot_Frequency_Amazon.png){width=75%}
+
 ### Topic Modelling
 [enter text here]
 
