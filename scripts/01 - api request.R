@@ -35,9 +35,9 @@ overview_query_url <- str_c(base_url, "?q=", "amazon",
                             "&to-date=", "2022-12-31",
                             "&page-size=50",
                             "&api-key=", api_key)
-length <- httr::content(httr::GET(overview_query_url))[["response"]][["total"]]
+length <- as.numeric(httr::content(httr::GET(overview_query_url))[["response"]][["total"]])
 # For testing the script without straining the API limit
-length = 200
+#length = 200
 
 # Predefine df object
 df <- data.frame()
@@ -69,9 +69,10 @@ for (i in 1:(ceiling(length/50))){
   # Store data in Matrix
   for (j in 1:length(content$response$results)) {
     temp_content <- content$response$results[[j]]
-    matrix[j,] <- c(temp_content$webPublicationDate,
-                    temp_content$webTitle,
-                    temp_content$fields$bodyText)
+    if(is.null(temp_content$fields$body) == T){temp_content$fields$body = 'Empty'}
+    matrix[j,] <- c(temp_content$fields$firstPublicationDate,
+                    temp_content$fields$headline,
+                    temp_content$fields$body)
   }
   
   # Add Matrix to df for every iteration
@@ -79,5 +80,6 @@ for (i in 1:(ceiling(length/50))){
   
 }
 
+colnames(df) <- c("publication date", "headline", "text")
 # Save in working directory
 write.csv(df, here::here("guardian_amazon_manual.csv"))
