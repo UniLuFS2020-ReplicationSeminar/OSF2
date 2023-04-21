@@ -1,7 +1,10 @@
 library(tidyverse)
+library(here)
+library(rstudioapi)
+library(jsonlite)
 library(httr)
 library(guardianapi)
-library(here)
+
 
 # Using guardianapi package -----------------------------------------------------
 
@@ -21,22 +24,62 @@ write.csv(df, here::here("guardian_amazon.csv"))
 
 # Manual GET request using httr package -----------------------------------
 
-# Set API key and endpoint URL
+# Set API key and base URL
 api_key <- rstudioapi::askForPassword()
-endpoint <- "https://content.guardianapis.com/search"
+base_url <- "https://content.guardianapis.com/search"
 
-# Set query parameters
-# According to Guardian documentation the limit for page size is 50: 
-# https://open-platform.theguardian.com/documentation/search
-parameters <- list(q = "amazon",
-                   from_date = "2000-01-01",
-                   to_date = "2022-12-31",
-                   page_size = 50)
+# Find out length
+overview_query_url <- str_c(base_url, "?q=", "amazon",
+                            "&show-fields=all",
+                            "&from-date=", "2000-01-01",
+                            "&to-date=", "2022-12-31",
+                            "&page-size=50",
+                            "&api-key=", api_key)
+length <- as.numeric(httr::content(httr::GET(overview_query_url))[["response"]][["total"]])
+# For testing the script without straining the API limit
+#length = 200
 
-# Send GET request to API and retrieve response
-response <- GET(endpoint, query = c(parameters, list(apiKey = api_key)))
+# Predefine df object
+df <- data.frame()
 
-# Extract data from response
-data <- content(response, "parsed")
-articles <- data$response$results
+# Loop
+for (i in 1:(ceiling(length/50))){
+  # Set query parameters
+  parameters <- list(q = "amazon",
+                     "from-date" = "2000-01-01",
+                     "to-date" = "2022-12-31",
+                     "show-fields" = "all",
+                     "page" = i,
+                     "page-size" = 50)
+  
+  # Set request header for API identification
+  headers <- c("api-key" = api_key)
+  
+  # Send GET request to API and retrieve response
+  response <- httr::GET(base_url,
+                        add_headers(.headers = headers),
+                        query=parameters)
+  
+  # Extract the content of the response 
+  content <- httr::content(response, as = "parsed")
+  
+  # Matrix for temporary storing of content
+  matrix <- matrix(nrow = 50, ncol = 3, byrow = T)
+  
+  # Store data in Matrix
+  for (j in 1:length(content$response$results)) {
+    temp_content <- content$response$results[[j]]
+    if(is.null(temp_content$fields$body) == T){temp_content$fields$body = 'Empty'}
+    matrix[j,] <- c(temp_content$fields$firstPublicationDate,
+                    temp_content$fields$headline,
+                    temp_content$fields$body)
+  }
+  
+  # Add Matrix to df for every iteration
+  df <- rbind(df, matrix)
+  
+}
 
+colnames(df) <- c("publication date", "headline", "text")
+# Save in working directory
+write.csv(df, here::here("guardian_amazon_manual.csv"))
