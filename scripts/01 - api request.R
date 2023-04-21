@@ -39,23 +39,8 @@ length <- httr::content(httr::GET(overview_query_url))[["response"]][["total"]]
 # For testing the script without strining the API limit
 #length = 1000
 
-# Define search query URL
-search_query_url <- str_c(base_url, "?q=",
-                          parameters[[1]],
-                          "&show-fields=all",
-                          "&from-date=", "2000-01-01",
-                          "&to-date=", "2022-12-31",
-                          "&page-size=50",
-                          #"&page=10",
-                          "&api-key=", api_key)
+# Predefine df object
+df <- data.frame()
 
-browseURL(search_query_url)
-# Send GET request to API and retrieve response
-response <- httr::GET(search_query_url)
-
-# Extract data from response and parse JSON
-json <- jsonlite::fromJSON(httr::content(response, as = "text"))
-
-# Create dataframe
 
 
