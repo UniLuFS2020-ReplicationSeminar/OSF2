@@ -1,5 +1,5 @@
 ---
-title: "XXX"
+title: "News coverage of Amazon as a company in The Guardian"
 author: "Olga Shpakova, Simon Weigold and Fabian Aiolfi"
 date: "`r Sys.Date()`"
 output: html_document
@@ -22,7 +22,7 @@ load("../terms_list.RData")
 ## Main Tests
 
 ### Named Entity Recognition
-Our aim was to create a corpus of Guardian articles that only refer to the company Amazon, and not, e.g., the rainforest. In order to do this we performed Named Entity Recognition (NER) to remove articles that referenced instances of Amazon other than the company. The NER classifier we used has an [accuracy of around 90%](https://spacy.io/usage/facts-figures#benchmarks), so the corpus also includes articles that mention the rainforest. This impreciseness becomes visible in the world cloud and the topic modelling further below.
+Our aim was to create a corpus of Guardian articles that only refers to the company Amazon, and not, e.g., the rainforest. In order to do this we performed Named Entity Recognition (NER) to remove articles that referenced instances of Amazon other than the company. The NER classifier we used has an [accuracy of around 90%](https://spacy.io/usage/facts-figures#benchmarks), so the corpus also includes articles that mention the rainforest. This impreciseness becomes visible in the world cloud and the topic modelling further below.
 
 ### Word Cloud
 In the dataset of Guardian articles examined, the most frequently used word in article titles on the topic of Amazon is, unsurprisingly, the word "amazon" (see word cloud plot). It occurs in its base form ("amazon") 2198 times in the entire 23343 article titles. In addition, the declined and apostrophized forms of the word occur 244 times ("amazons") and 82 times ("amazon'"). A smaller proportion of these words can be associated not only with the largest online retailer, "Amazon," but also with environmental issues related to the words "brazil," "rainforest," "brazilian," "brazils," and "deforestation," which occur 321 and 117, 108, 106, and 97 times, respectively, in the Guardian article titles.
