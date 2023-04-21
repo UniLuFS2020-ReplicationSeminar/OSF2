@@ -47,4 +47,6 @@ This figure displays the share of articles of each topic in our corpus. Unsurpri
 
 ![](topic_frequency_bar_plot.png){width=50%}
 
-
+## Conclusion
+The word cloud revealed that there is significant news coverage of Amazon as a company in The Guardian. Frequent word occurrences like "review", "media" or "book" indicate a representation of the various business segments of Amazon. Further analysis would be needed to fully confirm relations between terms and business; so far, it can only be assumed that for example the term "review" deals with products of Amazon.
+The topic modelling further validates these assumptions. While the "Amazon Inc." category refers to typical Marketplace themes such as retail or delivery, other important categories show the importance of Amazon's media products within the news coverage. Furthermore, Amazon also appears in categories, which could be associated to The Guardian's news sections (as can be identified on The Guardian website). COVID-19, environment and football are examples of categories which can be deducted from these news sections.
