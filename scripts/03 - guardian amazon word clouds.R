@@ -78,7 +78,4 @@ wordcloud2(df,
            size = 0.95,
            minSize = 5,
            rotateRatio = 0)
-
-
-
   
