@@ -86,7 +86,3 @@ ggplot(data=df_top35, aes(x=word_freq, y=freq, fill=word_freq))+
   theme_minimal()+
   theme(legend.position = "none")+
   labs(x = NULL, y = NULL)
- 
-
-
-
