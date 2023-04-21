@@ -37,7 +37,7 @@ overview_query_url <- str_c(base_url, "?q=", "amazon",
                             "&api-key=", api_key)
 length <- httr::content(httr::GET(overview_query_url))[["response"]][["total"]]
 # For testing the script without straining the API limit
-#length = 1000
+length = 200
 
 # Predefine df object
 df <- data.frame()
@@ -48,10 +48,9 @@ for (i in 1:(ceiling(length/50))){
   parameters <- list(q = "amazon",
                      "from-date" = "2000-01-01",
                      "to-date" = "2022-12-31",
-                     "show-fields" = "body",
+                     "show-fields" = "all",
                      "page" = i,
-                     "page-size" = 50,
-                     "show-blocks" = "body")
+                     "page-size" = 50)
   
   # Set request header for API identification
   headers <- c("api-key" = api_key)
@@ -62,23 +61,23 @@ for (i in 1:(ceiling(length/50))){
                         query=parameters)
   
   # Extract the content of the response 
-  content <- content(response, as = "parsed")
-  content <- content$response$results
+  content <- httr::content(response, as = "parsed")
   
   # Matrix for temporary storing of content
   matrix <- matrix(nrow = 50, ncol = 3, byrow = T)
   
-  # loop through contents list and storing date, headline, text
-  for (j in 1:length(content)) {
-    temp_content <- content[[j]]
+  # Store data in Matrix
+  for (j in 1:length(content$response$results)) {
+    temp_content <- content$response$results[[j]]
     matrix[j,] <- c(temp_content$webPublicationDate,
                     temp_content$webTitle,
-                    temp_content$fields$body)
+                    temp_content$fields$bodyText)
   }
   
-  # appending data from every new page from response
+  # Add Matrix to df for every iteration
   df <- rbind(df, matrix)
   
 }
 
-
+# Save in working directory
+write.csv(df, here::here("guardian_amazon_manual.csv"))
