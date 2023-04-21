@@ -17,9 +17,9 @@ load("../terms_list.RData")
 Which thematic categories can be deducted from the news coverage of Amazon as a company in The Guardian?
 
 ## Hypotheses
-H1: The business segments of Amazon as a company can be found in the news coverage (e.g. Marketplace, Prime, Prime Video, etc.).
-H2: The news sections of The Guardian have an impact on the themes found in the news coverage of Amazon as a company.
-H2a: The prioritization of climate change as a news section in The Guardian leads to a strong coverage of issues related to the Amazon rain forest.
+**H1**: The business segments of Amazon as a company can be found in the news coverage (e.g. Marketplace, Prime, Prime Video, etc.).  
+**H2**: The news sections of The Guardian have an impact on the themes found in the news coverage of Amazon as a company.  
+**H2a**: The prioritization of climate change as a news section in The Guardian leads to a strong coverage of issues related to the Amazon rain forest.
 
 ## Main Tests
 
