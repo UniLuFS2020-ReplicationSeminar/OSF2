@@ -28,10 +28,16 @@ write.csv(df, here::here("guardian_amazon.csv"))
 api_key <- rstudioapi::askForPassword()
 base_url <- "https://content.guardianapis.com/search"
 
-# Set query parameters
-parameters <- list("amazon",
-                   "from-date" = "2000-01-01",
-                   "to-date" = "2022-12-31")
+# Find out length
+overview_query_url <- str_c(base_url, "?q=", "amazon",
+                            "&show-fields=all",
+                            "&from-date=", "2000-01-01",
+                            "&to-date=", "2022-12-31",
+                            "&page-size=50",
+                            "&api-key=", api_key)
+length <- httr::content(httr::GET(overview_query_url))[["response"]][["total"]]
+# For testing the script without strining the API limit
+#length = 1000
 
 # Define search query URL
 search_query_url <- str_c(base_url, "?q=",
